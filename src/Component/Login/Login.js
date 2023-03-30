@@ -5,7 +5,7 @@ import {
   setFormData,
   addData,
   setFormDataError,
-  setFormDataEdit
+  setShowPassword
 } from "./LoginSlice";
 import {
   Box,
@@ -21,11 +21,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = React.useState(false);
   useEffect(() => {
     dispatch(getData());
   }, []);
-  const { formData, formDataError } = useSelector(
+  const { formData, formDataError, showPassword } = useSelector(
     (state) => state?.login
   );
   const onChangeValue = (e) => {
@@ -54,22 +53,19 @@ const Login = () => {
     return Fromvlid;
   };
 
-  console.log("formData?.id", formData?.id);
-
   const onSubmit = () => {
     if (validForm()) {
       dispatch(addData(formData))
         .then((res) => {
           if (res?.payload?.id) {
             dispatch(getData());
-            dispatch(setFormDataEdit(false));
             dispatch(setFormData({ email: "", password: "" }));
           }
         })
         .catch((err) => console.log("err", err));
     }
   };
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => dispatch(setShowPassword(true));
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -130,11 +126,7 @@ const Login = () => {
               {formDataError?.password}
             </span>
           </div>
-          <Button
-            sx={{ mb: 5 }}
-            variant="contained"
-            onClick={() => onSubmit()}
-          >
+          <Button sx={{ mb: 5 }} variant="contained" onClick={() => onSubmit()}>
             Log in
           </Button>
         </Box>

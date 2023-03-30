@@ -7,7 +7,7 @@ const initialState = {
   data: [],
   formData: {},
   formDataError: {},
-  formDataEdit: false,
+  showPassword: false,
   error: null,
 };
 export const getData = createAsyncThunk("/getData", async () => {
@@ -38,8 +38,8 @@ export const LoginSlice = createSlice({
     setFormDataError: (state, action) => {
       state.formDataError = action.payload;
     },
-    setFormDataEdit: (state, action) => {
-      state.formDataEdit = action.payload;
+    setShowPassword: (state, action) => {
+      state.showPassword = action.payload;
     },
   },
   extraReducers(homeData) {
@@ -70,6 +70,6 @@ export const LoginSlice = createSlice({
   },
 });
 
-export const { setFormData, setFormDataError, setFormDataEdit } = LoginSlice.actions;
+export const { setFormData, setFormDataError, setShowPassword } = LoginSlice.actions;
 
 export default LoginSlice.reducer;
