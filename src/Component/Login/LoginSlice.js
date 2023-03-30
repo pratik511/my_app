@@ -5,9 +5,12 @@ import axios from "axios";
 const initialState = {
   value: 0,
   data: [],
+  formData: {},
+  formDataError: {},
+  formDataEdit: false,
   error: null,
 };
-export const getData = createAsyncThunk("/logingetData", async () => {
+export const getData = createAsyncThunk("/getData", async () => {
   try {
     const response = await axios.get(`${BASE_URL}login`);
     return response.data;
@@ -25,9 +28,20 @@ export const addData = createAsyncThunk("/loginData", async (body) => {
 });
 
 export const LoginSlice = createSlice({
-  name: "Login",
+  name: "login",
   initialState,
   activeJourney: null,
+  reducers: {
+    setFormData: (state, action) => {
+      state.formData = action.payload;
+    },
+    setFormDataError: (state, action) => {
+      state.formDataError = action.payload;
+    },
+    setFormDataEdit: (state, action) => {
+      state.formDataEdit = action.payload;
+    },
+  },
   extraReducers(homeData) {
     homeData
       .addCase(getData.pending, (state) => {
@@ -55,5 +69,7 @@ export const LoginSlice = createSlice({
       })
   },
 });
+
+export const { setFormData, setFormDataError, setFormDataEdit } = LoginSlice.actions;
 
 export default LoginSlice.reducer;

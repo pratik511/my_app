@@ -26,7 +26,7 @@ const Login = () => {
     dispatch(getData());
   }, []);
   const { formData, formDataError } = useSelector(
-    (state) => state?.home
+    (state) => state?.login
   );
   const onChangeValue = (e) => {
     const { name, value } = e.target;
@@ -133,9 +133,7 @@ const Login = () => {
           <Button
             sx={{ mb: 5 }}
             variant="contained"
-            onClick={() => {
-              onSubmit();
-            }}
+            onClick={() => onSubmit()}
           >
             Log in
           </Button>
