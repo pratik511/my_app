@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getData,
-  deleteData,
   setFormData,
   addData,
-  editData,
   setFormDataError,
   setFormDataEdit
 } from "./LoginSlice";
@@ -27,25 +25,15 @@ const Login = () => {
   useEffect(() => {
     dispatch(getData());
   }, []);
-  const { data, formData, formDataError } = useSelector(
+  const { formData, formDataError } = useSelector(
     (state) => state?.home
   );
-  console.log("formDataError", formDataError);
   const onChangeValue = (e) => {
     const { name, value } = e.target;
     dispatch(setFormData({ ...formData, [name]: value }));
     dispatch(setFormDataError({ ...formDataError, [name]: "" }));
   };
 
-  const DeleteData = (id) => {
-    dispatch(deleteData(id))
-      .then((res) => {
-        if (res?.payload?.id) {
-          dispatch(getData());
-        }
-      })
-      .catch((err) => console.log("err", err));
-  };
   const validForm = () => {
     let Fromvlid = true;
     let formDataError = {};
@@ -67,19 +55,6 @@ const Login = () => {
   };
 
   console.log("formData?.id", formData?.id);
-  const onEdit = () => {
-    if (validForm()) {
-      dispatch(editData(formData))
-        .then((res) => {
-          if (res?.payload?.id) {
-            dispatch(getData());
-            dispatch(setFormDataEdit(false));
-            dispatch(setFormData({ email: "", password: "" }));
-          }
-        })
-        .catch((err) => console.log("err", err));
-    }
-  };
 
   const onSubmit = () => {
     if (validForm()) {
