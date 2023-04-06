@@ -65,7 +65,8 @@ const Login = () => {
         .catch((err) => console.log("err", err));
     }
   };
-  const handleClickShowPassword = () => dispatch(setShowPassword(true));
+  const handleClickShowPassword = () =>
+    dispatch(setShowPassword(!showPassword));
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
