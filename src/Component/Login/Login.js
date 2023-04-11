@@ -58,6 +58,7 @@ const Login = () => {
       dispatch(addData(formData))
         .then((res) => {
           if (res?.payload?.id) {
+            localStorage?.setItem("Data",JSON?.stringify(res?.payload))
             dispatch(getData());
             dispatch(setFormData({ email: "", password: "" }));
           }

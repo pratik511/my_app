@@ -87,7 +87,7 @@ const Home = () => {
 
   return (
     <div style={{ marginTop: "50px" }}>
-      <h1>Redux CRUD</h1>
+      <h1 onClick={() => localStorage.clear()}>Redux CRUD</h1>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Box
           sx={{
