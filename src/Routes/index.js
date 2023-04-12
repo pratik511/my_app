@@ -4,18 +4,23 @@ import Home from "../Component/Home/Home";
 import NoPage from "../Component/NoPage";
 import Login from "../Component/Login/Login";
 import Header from "../Component/Header/Header";
+import Dashboard from "../Component/Dashboard";
 
 const RoutesPage = () => {
   const data = localStorage?.getItem("Data");
   console.log("data", data);
   return (
     <>
-      <Header />
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route
             path="/"
-            element={data ? <Navigate to={"/home"} /> : <Login />}
+            element={data ? <Navigate to={"/dashboard"} /> : <Login />}
+          />
+          <Route
+            path="/dashboard"
+            element={data ? <Dashboard /> : <Navigate to={"/"} />}
           />
           <Route
             path="/home"

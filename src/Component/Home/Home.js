@@ -7,7 +7,7 @@ import {
   addData,
   editData,
   setFormDataError,
-  setFormDataEdit,
+  setFormDataEdit
 } from "./HomeSlice";
 import { Box, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -20,7 +20,6 @@ const Home = () => {
   const { data, formData, formDataError, formDataEdit } = useSelector(
     (state) => state?.home
   );
-  console.log("formDataError", formDataError);
   const onChangeValue = (e) => {
     const { name, value } = e.target;
     dispatch(setFormData({ ...formData, [name]: value }));
@@ -56,7 +55,6 @@ const Home = () => {
     dispatch(setFormData(item));
     // dispatch(editData())
   };
-  console.log("formData?.id",formData?.id);
   const onEdit = () => {
     if (validForm()) {
       dispatch(editData(formData))
@@ -93,7 +91,7 @@ const Home = () => {
           sx={{
             width: 500,
             maxWidth: "100%",
-            "& > :not(style)": { mt: 2 },
+            "& > :not(style)": { mt: 2 }
           }}
         >
           <div style={{ textAlign: "left" }}>
@@ -182,7 +180,7 @@ const Home = () => {
                     style={{
                       border: "1px solid black",
                       display: "flex",
-                      justifyContent: "space-evenly",
+                      justifyContent: "space-evenly"
                     }}
                   >
                     <span

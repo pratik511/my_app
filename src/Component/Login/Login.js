@@ -18,9 +18,11 @@ import {
 import Button from "@mui/material/Button";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(getData());
   }, []);
@@ -58,6 +60,8 @@ const Login = () => {
       dispatch(addData(formData))
         .then((res) => {
           if (res?.payload?.id) {
+            navigate("/dashboard")
+            window.location.reload()
             localStorage?.setItem("Data",JSON?.stringify(res?.payload))
             dispatch(getData());
             dispatch(setFormData({ email: "", password: "" }));
