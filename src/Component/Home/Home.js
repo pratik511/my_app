@@ -89,7 +89,7 @@ const Home = () => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Box
           sx={{
-            width: 500,
+            width: { sm: 500, xs: 340 },
             maxWidth: "100%",
             "& > :not(style)": { mt: 2 }
           }}

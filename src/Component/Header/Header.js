@@ -21,8 +21,8 @@ const drawerWidth = 240;
 const navItems = [
   { header: "Dashboard", path: "/dashboard" },
   { header: "Home", path: "/home" },
-  { header: "About", path: "/" },
-  { header: "Contact", path: "/" }
+  { header: "About", path: "/about" },
+  { header: "Contact", path: "/contact" }
 ];
 
 const Header = (props) => {

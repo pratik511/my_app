@@ -5,6 +5,8 @@ import NoPage from "../Component/NoPage";
 import Login from "../Component/Login/Login";
 import Header from "../Component/Header/Header";
 import Dashboard from "../Component/Dashboard";
+import About from "../Component/About";
+import Contact from "../Component/Contact";
 
 const RoutesPage = () => {
   const data = localStorage?.getItem("Data");
@@ -25,6 +27,14 @@ const RoutesPage = () => {
           <Route
             path="/home"
             element={data ? <Home /> : <Navigate to={"/"} />}
+          />
+          <Route
+            path="/about"
+            element={data ? <About /> : <Navigate to={"/"} />}
+          />
+          <Route
+            path="/contact"
+            element={data ? <Contact /> : <Navigate to={"/"} />}
           />
           <Route path="*" element={<NoPage />} />
         </Routes>
