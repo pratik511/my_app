@@ -1,0 +1,128 @@
+// @import "../../styles/mixins/breakpoint.scss";
+@import "../../style/breakpoint.scss";
+
+.button-center-align-home {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999999999;
+    height: 100vh;
+    align-items: end;
+    margin-bottom: 7rem;
+    @include breakpoint("max-md") {
+        margin-bottom: 3rem;
+    }
+    @include breakpoint("max-lg") {
+        margin-bottom: 4rem;
+    }
+    button {
+        padding: 8px 15px;
+        color: white;
+        border-radius: 4px;
+        font-size: 18px;
+        line-height: 1.5;
+        font-weight: 400;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        min-width: 210px;
+        background-color: black;
+        letter-spacing: 1px;
+        border: 1px solid white;
+        font-family: "Gotham-Book_0";
+        height: 50px;
+        @include breakpoint("max-md") {
+            height: 44px;
+            min-width: 180px;
+            font-size: 14px;
+        }
+        @include breakpoint("max-lg") {
+            height: 46px;
+            min-width: 195px;
+            font-size: 14px;
+        }
+    }
+}
+.awssld__controls button{
+    top: calc(25vh) !important;
+    @include breakpoint("max-lg") {
+        top: calc(50% - 0.5 * var(--control-button-height)) !important
+    }
+}
+.awssld__content {
+    background-color: transparent !important;
+}
+.image-slide-align {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    img {
+        width: 100%;
+        height: 80vh;
+        object-fit: cover;
+    }
+}
+
+.image-blur {
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    z-index: 9999999999999999999999999;
+    width: 100%;
+}
+
+.awssld__controls__arrow-left:after,
+.awssld__controls__arrow-right:after {
+    // background-color: $blue-4 !important;
+    background-color: black !important;
+}
+
+.awssld__controls__arrow-left:before {
+    // background-color: $blue-4 !important;
+    background-color: black !important;
+}
+
+.awssld__controls__arrow-right:before {
+    // background-color: $blue-4 !important;
+    background-color: black !important;
+}
+.home-page {
+    margin-bottom: 50px;
+    height: 80vh;
+    @include breakpoint("max-md") {
+        .awssld {
+            height: 60vh;
+            .awssld__wrapper {
+                .awssld__container {
+                    .awssld__box {
+                        .awssld__content {
+                            .image-slide-align img {
+                                height: 60vh;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @include breakpoint("max-lg") {
+        .awssld {
+            height: 50vh;
+            .awssld__wrapper {
+                .awssld__container {
+                    .awssld__box {
+                        .awssld__content {
+                            .image-slide-align img {
+                                height: 50vh;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

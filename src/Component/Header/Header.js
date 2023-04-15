@@ -15,7 +15,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { Avatar } from "@mui/material";
+import { Avatar, Badge } from "@mui/material";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 const drawerWidth = 240;
 const navItems = [
@@ -27,6 +28,7 @@ const navItems = [
 
 const Header = (props) => {
   const { window } = props;
+  const data = localStorage?.getItem("Data");
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ const Header = (props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2, cursor: "pointer" }}>
+      <Typography variant="h6" sx={{ my: 2, cursor: "pointer" }} onClick={() => navigate('/dashboard')}>
         MUI
       </Typography>
       <Divider />
@@ -56,11 +58,16 @@ const Header = (props) => {
             </ListItemButton>
           </ListItem>
         ))}
-        <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: "center" }} onClick={() => Logout()}>
-            <ListItemText primary="Logout" />
-          </ListItemButton>
-        </ListItem>
+        {data && (
+          <ListItem disablePadding>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => Logout()}
+            >
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
     </Box>
   );
@@ -71,7 +78,10 @@ const Header = (props) => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ p: { xs: "0px !important" } }}>
+      <AppBar
+        component="nav"
+        sx={{ p: { xs: "0px !important", background: "#000000" } }}
+      >
         <Toolbar sx={{ display: { xs: "flex" } }}>
           <IconButton
             color="inherit"
@@ -91,15 +101,10 @@ const Header = (props) => {
               ml: { sm: 12, xs: 0 },
               cursor: "pointer"
             }}
+            onClick={() => navigate('/dashboard')}
           >
             MUI
           </Typography>
-          <Box sx={{ display: { xs: "block", sm: "none" } }}>
-            <Avatar
-              alt="Remy Sharp"
-              src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=1380&t=st=1681302827~exp=1681303427~hmac=5abb418019f773ebad3154a3e09e2564298867d6bfbf9a9a8bf2706c5094f2b8"
-            />
-          </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems?.map((item, i) => (
               <Button
@@ -110,10 +115,31 @@ const Header = (props) => {
                 {item?.header}
               </Button>
             ))}
-            <Button sx={{ color: "#fff" }} onClick={() => Logout()}>
-              LogOut
-            </Button>
+            {/* <Button sx={{ color: "#fff", minWidth: 0 }}>
+              <Badge badgeContent={4} color="primary">
+                <ShoppingBagOutlinedIcon />
+              </Badge>
+            </Button> */}
+            {data ? (
+              <Button sx={{ color: "#fff" }} onClick={() => Logout()}>
+                LogOut
+              </Button>
+            ) : (
+              <Button sx={{ color: "#fff" }} onClick={() => Logout()}>
+                login
+              </Button>
+            )}
           </Box>
+          {data && (
+            <Box sx={{ cursor: "pointer" }}>
+              {/* <Badge badgeContent={4} color="primary"> */}
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=1380&t=st=1681302827~exp=1681303427~hmac=5abb418019f773ebad3154a3e09e2564298867d6bfbf9a9a8bf2706c5094f2b8"
+                />
+              {/* </Badge> */}
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
       <Box component="nav">
