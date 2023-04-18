@@ -2,7 +2,7 @@ import React from "react";
 import CommonCard from "../CommonComponent/CommonCard";
 import { Container, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import './Dashboard.scss'
+import "./Dashboard.scss";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/custom-animations/cube-animation.css";
 import AwesomeSliderStyles from "react-awesome-slider/src/styles";
@@ -23,7 +23,7 @@ const bannerImage = [
   {
     image:
       "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=1380&t=st=1681302827~exp=1681303427~hmac=5abb418019f773ebad3154a3e09e2564298867d6bfbf9a9a8bf2706c5094f2b8"
-  },
+  }
 ];
 
 const Dashboard = () => {
@@ -58,21 +58,15 @@ const Dashboard = () => {
         </AwesomeSlider>
       </div>
       <Grid sx={{ display: "flex" }}>
-        {/* <Grid sx={{ width: "20%" }}>
+        <Grid sx={{ width: "20%", display: { xs: "none", sm: "flex" } }}>
           <Grid
             container
-            rowSpacing={5}
+            // rowSpacing={5}
             columnSpacing={{ xs: 1, sm: 1, md: 1 }}
           >
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]?.map(() => {
-              return (
-                <Grid item xs={12} sm={6} md={4} xl={4}>
-                  <CommonCard />
-                </Grid>
-              );
-            })}
+            
           </Grid>
-        </Grid> */}
+        </Grid>
         <Container sx={{ textAlign: "-webkit-center" }}>
           <Grid
             container
@@ -88,21 +82,15 @@ const Dashboard = () => {
             })}
           </Grid>
         </Container>
-        {/* <Grid sx={{ width: "20%" }}>
+        <Grid sx={{ width: "20%", display: { xs: "none", sm: "flex" } }}>
           <Grid
             container
-            rowSpacing={5}
+            // rowSpacing={5}
             columnSpacing={{ xs: 1, sm: 1, md: 1 }}
           >
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]?.map(() => {
-              return (
-                <Grid item xs={12} sm={6} md={4} xl={4}>
-                  <CommonCard />
-                </Grid>
-              );
-            })}
+            
           </Grid>
-        </Grid> */}
+        </Grid>
       </Grid>
     </div>
   );

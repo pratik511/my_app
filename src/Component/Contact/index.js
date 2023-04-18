@@ -1,8 +1,12 @@
 import React from 'react'
+import AdsComponent from '../CommonComponent/AdsComponent'
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <div>
+            <h1>hello</h1>
+            <AdsComponent dataAdSlot="4788656543" />
+    </div>
   )
 }
 
