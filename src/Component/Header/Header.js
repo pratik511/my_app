@@ -17,6 +17,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { Avatar, Badge } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { getToken, logout } from "../../utils/auth.util";
 
 const drawerWidth = 240;
 const navItems = [
@@ -28,17 +29,12 @@ const navItems = [
 
 const Header = (props) => {
   const { window } = props;
-  const data = localStorage?.getItem("Data");
+  const data = getToken();
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
-  };
-
-  const Logout = () => {
-    localStorage.clear();
-    navigate(0);
   };
 
   const drawer = (
@@ -62,7 +58,7 @@ const Header = (props) => {
           <ListItem disablePadding>
             <ListItemButton
               sx={{ textAlign: "center" }}
-              onClick={() => Logout()}
+              onClick={() => logout()}
             >
               <ListItemText primary="Logout" />
             </ListItemButton>
@@ -121,11 +117,11 @@ const Header = (props) => {
               </Badge>
             </Button> */}
             {data ? (
-              <Button sx={{ color: "#fff" }} onClick={() => Logout()}>
+              <Button sx={{ color: "#fff" }} onClick={() => logout()}>
                 LogOut
               </Button>
             ) : (
-              <Button sx={{ color: "#fff" }} onClick={() => Logout()}>
+              <Button sx={{ color: "#fff" }} onClick={() => navigate("/")}>
                 login
               </Button>
             )}

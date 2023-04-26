@@ -10,9 +10,9 @@ const initialState = {
   formDataEdit: false,
   error: null,
 };
-export const getData = createAsyncThunk("/getData", async () => {
+export const getData = createAsyncThunk("getData", async () => {
   try {
-    const response = await axios.get(`${BASE_URL}rtest`);
+    const response = await axios.get(`${BASE_URL}todo`);
     return response.data;
   } catch (e) {
     return e.response.data;
@@ -20,7 +20,7 @@ export const getData = createAsyncThunk("/getData", async () => {
 });
 export const addData = createAsyncThunk("/postData", async (body) => {
   try {
-    const response = await axios.post(`${BASE_URL}rtest`, body);
+    const response = await axios.post(`${BASE_URL}todo`, body);
     return response.data;
   } catch (e) {
     return e.response.data;
@@ -28,7 +28,7 @@ export const addData = createAsyncThunk("/postData", async (body) => {
 });
 export const editData = createAsyncThunk("/putData", async (body) => {
   try {
-    const response = await axios.put(`${BASE_URL}rtest/${body?.id}`, body);
+    const response = await axios.put(`${BASE_URL}todo/${body?._id}`, body);
     return response.data;
   } catch (e) {
     return e.response.data;
@@ -36,7 +36,7 @@ export const editData = createAsyncThunk("/putData", async (body) => {
 });
 export const deleteData = createAsyncThunk("/deleteData", async (body) => {
   try {
-    const response = await axios.delete(`${BASE_URL}rtest/${body}`);
+    const response = await axios.delete(`${BASE_URL}todo/${body}`);
     return response.data;
   } catch (e) {
     return e.response.data;

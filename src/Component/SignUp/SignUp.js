@@ -5,7 +5,7 @@ import {
   addData,
   setFormDataError,
   setShowPassword
-} from "./LoginSlice";
+} from "./SignUpSlice";
 import {
   Box,
   FormControl,
@@ -18,12 +18,10 @@ import Button from "@mui/material/Button";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Link, useNavigate } from "react-router-dom";
-import { setToken } from "../../utils/auth.util";
-import { setUserInfo } from "../../utils/user.util";
 
-const Login = () => {
+const SignUp = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { formData, formDataError, showPassword } = useSelector(
     (state) => state?.login
@@ -50,6 +48,10 @@ const Login = () => {
       Fromvlid = false;
       formDataError["password"] = "Password is required";
     }
+    if (!formData?.username?.trim()) {
+      Fromvlid = false;
+      formDataError["username"] = "User name is required";
+    }
     dispatch(setFormDataError(formDataError));
     return Fromvlid;
   };
@@ -58,19 +60,18 @@ const Login = () => {
     if (validForm()) {
       dispatch(addData(formData))
         .then((res) => {
-          if (res?.payload?.status === 200) {
-            setToken(res?.payload?.token)
-            setUserInfo(res?.payload)
-            navigate("/dashboard")
-            window.location.reload()
-            dispatch(setFormData({ email: "", password: "" }));
+          if (res?.payload?.data) {
+            navigate("/");
+            window.location.reload();
+            dispatch(setFormData({ username: "", email: "", password: "" }));
           }
         })
         .catch((err) => console.log("err", err));
     }
   };
 
-  const handleClickShowPassword = () => dispatch(setShowPassword(!showPassword));
+  const handleClickShowPassword = () =>
+    dispatch(setShowPassword(!showPassword));
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -78,7 +79,7 @@ const Login = () => {
 
   return (
     <div style={{ marginTop: "50px" }}>
-      <h1>Login</h1>
+      <h1>Sign Up</h1>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Box
           sx={{
@@ -87,6 +88,20 @@ const Login = () => {
             "& > :not(style)": { mt: 2 }
           }}
         >
+          <div style={{ textAlign: "left" }}>
+            <span style={{ margin: "10px" }}>User Name</span>
+            <TextField
+              fullWidth
+              id="outlined-required"
+              // label="First Name"
+              name="username"
+              value={formData?.username}
+              onChange={(e) => onChangeValue(e)}
+            />
+            <span style={{ fontSize: "14px", color: "red", margin: "10px" }}>
+              {formDataError?.username}
+            </span>
+          </div>
           <div style={{ textAlign: "left" }}>
             <span style={{ margin: "10px" }}>Email</span>
             <TextField
@@ -132,13 +147,23 @@ const Login = () => {
             </span>
           </div>
           <Button sx={{ mb: 0 }} variant="contained" onClick={() => onSubmit()}>
-            Log in
+            Sign Up
           </Button>
-          <Link to="/signup" style={{display:"grid",marginTop:2, cursor:"pointer",textDecoration:"none"}}>Sign up</Link>
+          <Link
+            to="/"
+            style={{
+              display: "grid",
+              marginTop: 2,
+              cursor: "pointer",
+              textDecoration: "none"
+            }}
+          >
+            Login
+          </Link>
         </Box>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

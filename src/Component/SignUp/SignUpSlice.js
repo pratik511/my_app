@@ -13,14 +13,14 @@ const initialState = {
 
 export const addData = createAsyncThunk("/loginData", async (body) => {
   try {
-    const response = await axios.post(`${BASE_URL}login`, body);
+    const response = await axios.post(`${BASE_URL}register`, body);
     return response.data;
   } catch (e) {
     return e.response.data;
   }
 });
 
-export const LoginSlice = createSlice({
+export const SignUpSlice = createSlice({
   name: "login",
   initialState,
   activeJourney: null,
@@ -51,6 +51,6 @@ export const LoginSlice = createSlice({
   },
 });
 
-export const { setFormData, setFormDataError, setShowPassword } = LoginSlice.actions;
+export const { setFormData, setFormDataError, setShowPassword } = SignUpSlice.actions;
 
-export default LoginSlice.reducer;
+export default SignUpSlice.reducer;

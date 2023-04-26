@@ -29,7 +29,7 @@ const Home = () => {
   const DeleteData = (id) => {
     dispatch(deleteData(id))
       .then((res) => {
-        if (res?.payload?.id) {
+        if (res?.payload?.data?._id) {
           dispatch(getData());
         }
       })
@@ -59,7 +59,7 @@ const Home = () => {
     if (validForm()) {
       dispatch(editData(formData))
         .then((res) => {
-          if (res?.payload?.id) {
+          if (res?.payload?.data?._id) {
             dispatch(getData());
             dispatch(setFormDataEdit(false));
             dispatch(setFormData({ fname: "", lname: "" }));
@@ -73,7 +73,7 @@ const Home = () => {
     if (validForm()) {
       dispatch(addData(formData))
         .then((res) => {
-          if (res?.payload?.id) {
+          if (res?.payload?.data?._id) {
             dispatch(getData());
             dispatch(setFormDataEdit(false));
             dispatch(setFormData({ fname: "", lname: "" }));
@@ -168,7 +168,7 @@ const Home = () => {
             </tr>
           </thead>
           <tbody className="table-group-divider">
-            {data?.map((item, index) => {
+            {data?.todo?.map((item, index) => {
               return (
                 <tr>
                   <th style={{ border: "1px solid black" }} scope="row">
@@ -191,7 +191,7 @@ const Home = () => {
                     </span>
                     <span
                       style={{ color: "red", cursor: "pointer" }}
-                      onClick={() => DeleteData(item?.id)}
+                      onClick={() => DeleteData(item?._id)}
                     >
                       Delete
                     </span>

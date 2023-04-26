@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
-import ReactGoogleAutocomplete from 'react-google-autocomplete'
+import React, { useRef, useState } from "react";
+import ReactGoogleAutocomplete from "react-google-autocomplete";
 
 const About = () => {
-  const [inputValue, setInputValue] = useState()
-  console.log("inputValue",inputValue);
+  const [inputValue, setInputValue] = useState();
+  console.log("inputValue", inputValue);
   const inputRef = useRef(null);
   const handlePlaceSelect = (place) => {
     const Area = place.address_components?.find((component) =>
@@ -29,7 +29,7 @@ const About = () => {
       CityName: City,
       AreaName: Area,
       Latitude: Latitude,
-      Longitude: Longitude,
+      Longitude: Longitude
     };
     setInputValue({ ...inputValue, location: place?.formatted_address });
 
@@ -43,22 +43,23 @@ const About = () => {
     options: {
       fields: ["address_components", "geometry", "formatted_address"],
       strictBounds: false,
-      types: ["establishment", "geocode"],
+      types: ["establishment", "geocode"]
     },
-    ref: inputRef,
+    ref: inputRef
   };
- 
-  return (
-    <div>About
-        <ReactGoogleAutocomplete
-                        {...autocompleteProps}
-                        placeholder={"Search location"}
-                        // onPlaceSelected={onPlaceSelected}
-                        className="icon-input-alignment"
-                      />
-                      <div ref={inputRef}></div>
-    </div>
-  )
-}
 
-export default About
+  return (
+    <div>
+      About
+      <ReactGoogleAutocomplete
+        {...autocompleteProps}
+        placeholder={"Search location"}
+        // onPlaceSelected={onPlaceSelected}
+        className="icon-input-alignment"
+      />
+      <div ref={inputRef}></div>
+    </div>
+  );
+};
+
+export default About;
