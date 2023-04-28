@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div>
       <h1>hello</h1>
-      <AdsComponent dataAdSlot="4788656543" />
+      <AdsComponent dataAdSlot="4788656543" width="300" height="250" />
       {/* <AdsComponentFixed
         slot="4788656543"
         style={{
@@ -15,6 +15,7 @@ const Contact = () => {
           height: "250px"
         }}
       /> */}
+      
     </div>
   );
 };

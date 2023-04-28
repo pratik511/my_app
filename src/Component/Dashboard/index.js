@@ -6,6 +6,7 @@ import "./Dashboard.scss";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/custom-animations/cube-animation.css";
 import AwesomeSliderStyles from "react-awesome-slider/src/styles";
+import AdsComponent from "../CommonComponent/AdsComponent";
 
 const bannerImage = [
   {
@@ -57,6 +58,7 @@ const Dashboard = () => {
             })}
         </AwesomeSlider>
       </div>
+      <AdsComponent dataAdSlot="4788656543" width="300" height="250" />
       <Grid sx={{ display: "flex" }}>
         <Grid sx={{ width: "20%", display: { xs: "none", sm: "flex" } }}>
           <Grid
